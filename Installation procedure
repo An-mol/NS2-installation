@@ -1,0 +1,46 @@
+NS-2 INSTALLATION
+
+1.	Download NS-allinone-2.35 from http://sourceforge.net/projects/nsnam/files/allinone/ns-allinone-2.35/ns-allinone-2.35.tar.gz/download. 
+2.	Unzip your contents to your desired location.
+3.	Before you install NS-2, Some essential packages need to be installed:
+    •	sudo apt-get install tcl8.5-dev tk8.5-dev
+    •	sudo apt-get install gcc-4.4 g++-4.4
+    •	sudo apt-get install build-essential autoconf automake
+    •	sudo apt-get install perl xgraph libxt-dev libx11-dev libxmu-dev
+4.	Open OTcl make file and change CC = @CC@ to CC=gcc-4.4, and save it. i.e.
+    •	gedit /home/your_user_accnt/ns-allinone-2.35/otcl-1.14/Makefile.in
+    •	Remove  CC = @CC@ and paste CC=gcc-4.4
+5.	Now you can proceed with installing NS-2.
+    •	cd /home/your_user_accnt/ns-allinone-2.35
+    •	./install
+6.	Now, you need to set some environmental variables to your hidden bashrc file.
+    •	gedit ~/.bashrc
+    (In some laptops, this file may not exist, in that case do not worry. Create the file and proceed)
+    •	Go to the end of the file and append the following lines :
+	#LD_LIBRARY_PATH
+	OTCL_LIB=/home/your_user_accnt/ns-allinone-2.35/otcl-1.14
+	NS2_LIB=/home/your_user_accnt/ns-allinone-2.35/lib
+	X11_LIB=/usr/X11R6/lib
+	USR_LOCAL_LIB=/usr/local/lib
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$OTCL_LIB:$NS2_LIB:$X11_LIB:$USR_LOCAL_LIB
+	# TCL_LIBRARY
+	TCL_LIB=/home/your_user_accnt/ns-allinone-2.35/tcl8.5.10/library
+	USR_LIB=/usr/lib
+	export TCL_LIBRARY=$TCL_LIB:$USR_LIB
+	# PATH
+	XGRAPH=/home/your_user_accnt/ns-allinone-2.35/bin:/home/your_user_accnt/ns-allinone-2.35/tcl8.5.10/unix:/home/your_user_accnt/ns-allinone-2.35/tk8.5.10/unix
+	NS=/home/your_user_accnt/ns-allinone-2.35/ns-2.35/
+	NAM=/home/your_user_accnt/ns-allinone-2.34/nam-1.15/
+	PATH=$PATH:$XGRAPH:$NS:$NAM
+    
+    •	Save, close and reload the basrc file using : source ~/.bashrc
+
+7.	Now run the following commands to finish the installation procedure :
+    •	sudo apt-get install ns2
+    •	sudo apt-get install nam
+8.	If you have completed the above steps successfully, that means that your installation is complete. Verify this by running a test script.
+    •	cd /home/your_user_accnt/ns-allinone-2.35/ns-2.35/tcl/ex
+    •	ns simple.tcl
+9.	Congratulations. NS-2 installation is now complete.
+
+
